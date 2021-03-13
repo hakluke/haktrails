@@ -19,13 +19,20 @@ type Config struct {
 
 var config *Config
 var apiEndpoint string
+var output string
 
 func main() {
+	// default config file location
 	defaultConfigFile := os.Getenv("HOME") + "/.config/haktools/haktrails-config.yml"
+
 	// parse the command line options
-	concurrencyPtr := flag.Int("t", 4, "Number of threads to utilise. Keep in mind that the API has rate limits.")
-	configFile := flag.String("c", defaultConfigFile, "Config file location")
-	flag.Parse()
+	mainFlagSet := flag.NewFlagSet("haktrails", flag.ExitOnError)
+	concurrencyPtr := mainFlagSet.Int("t", 4, "Number of threads to utilise. Keep in mind that the API has rate limits.")
+	configFile := mainFlagSet.String("c", defaultConfigFile, "Config file location")
+	outputPointer := mainFlagSet.String("o", "json", "output format, list or json")
+	mainFlagSet.Parse(os.Args[2:])
+
+	output = *outputPointer
 
 	// load config file
 	f, err := os.Open(*configFile)
@@ -58,6 +65,34 @@ func main() {
 	wg := &sync.WaitGroup{}
 
 	switch os.Args[1] {
+	case "tags":
+		for i := 0; i < numWorkers; i++ {
+			wg.Add(1)
+			go tags(work, wg)
+		}
+		wg.Wait()
+	case "whois":
+		for i := 0; i < numWorkers; i++ {
+			wg.Add(1)
+			go whois(work, wg)
+		}
+		wg.Wait()
+	case "company":
+		for i := 0; i < numWorkers; i++ {
+			wg.Add(1)
+			go company(work, wg)
+		}
+		wg.Wait()
+	case "details":
+		for i := 0; i < numWorkers; i++ {
+			wg.Add(1)
+			go details(work, wg)
+		}
+		wg.Wait()
+	case "ping":
+		ping()
+	case "usage":
+		usage()
 	case "subdomains":
 		for i := 0; i < numWorkers; i++ {
 			wg.Add(1)
