@@ -29,7 +29,7 @@ func main() {
 	mainFlagSet := flag.NewFlagSet("haktrails", flag.ExitOnError)
 	concurrencyPtr := mainFlagSet.Int("t", 4, "Number of threads to utilise. Keep in mind that the API has rate limits.")
 	configFile := mainFlagSet.String("c", defaultConfigFile, "Config file location")
-	outputPointer := mainFlagSet.String("o", "json", "output format, list or json")
+	outputPointer := mainFlagSet.String("o", "list", "output format, list or json. json will return the raw data from SecurityTrails")
 	mainFlagSet.Parse(os.Args[2:])
 
 	output = *outputPointer
@@ -99,10 +99,16 @@ func main() {
 			go subdomains(work, wg)
 		}
 		wg.Wait()
-	case "associated":
+	case "associateddomains":
 		for i := 0; i < numWorkers; i++ {
 			wg.Add(1)
 			go associatedDomains(work, wg)
+		}
+		wg.Wait()
+	case "associatedips":
+		for i := 0; i < numWorkers; i++ {
+			wg.Add(1)
+			go associatedIPs(work, wg)
 		}
 		wg.Wait()
 	// no valid subcommand found - default to showing a message and exiting
