@@ -30,7 +30,7 @@ yahoo.com
 ### Flags
 
 - The *output* type can be specified with `-o json` or `-o list`. List is the default. List is only compatiable with subdomains, associated domains and associated ips. All the other endpoints will return json regardless.
-- The number of threads can be set using `-t <number>`. This will determine how many domains can be processed at the same time. It's worth noting that the API has rate-limiting, so there's no point setting a really high thread count here.
+- The number of threads can be set using `-t <number>`. This will determine how many domains can be processed at the same time. It's worth noting that the API has rate-limiting, so setting a really high thread count here will actually slow you down.
 - The config file location can be set with `-c <file path>`. The default location is `~/.config/haktools/haktrails-config.yml`. A sample config file can be seen below.
 
 ### Config file
@@ -146,3 +146,7 @@ Currently, some of the features of the SecurityTrails API are not yet supported.
 - Domains DMARC feed
 - Domains subdomains feed
 - Certificate transparency firehose
+
+## SecurityTrails API Reference
+
+The full API reference is [here](https://docs.securitytrails.com/reference).
