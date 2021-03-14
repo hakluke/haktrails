@@ -126,6 +126,14 @@ Pings SecurityTrails to check if your API key is working properly.
 haktrails ping
 ```
 
+###
+
+Shows a nice ascii-art banner :)
+
+```
+haktrails banner
+```
+
 ## Not Yet Supported
 
 Currently, some of the features of the SecurityTrails API are not yet supported. Pull requests are welcome!
