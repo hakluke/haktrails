@@ -32,7 +32,7 @@ It will include the following:
 - Code samples for JS, Python, Go, and more
 - Chance to win access to SurfaceBrowser™
 
-## Features
+## Tool Features
 
 - stdin input for easy tool chaining
 - subdomain discovery
