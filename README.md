@@ -23,7 +23,7 @@ http://securitytrails.com/bug-bounty-hunters-toolkit?referral_code=LLDAK0F80M)!
 
 It will include the following:
 
-- Security data API access
+- Security data API acc:ess
 - 2500 queries/month
 - Associated domains
 - Subdomain enumeration
@@ -75,6 +75,7 @@ yahoo.com
 - The *output* type can be specified with `-o json` or `-o list`. List is the default. List is only compatiable with subdomains, associated domains and associated ips. All the other endpoints will return json regardless.
 - The number of threads can be set using `-t <number>`. This will determine how many domains can be processed at the same time. It's worth noting that the API has rate-limiting, so setting a really high thread count here will actually slow you down.
 - The config file location can be set with `-c <file path>`. The default location is `~/.config/haktools/haktrails-config.yml`. A sample config file can be seen below.
+- The lookup type for historical DNS lookups can be set with `-type <type>`, available options are a,aaaa,mx,txt,ns,soa.
 
 ### Config file
 
@@ -119,6 +120,22 @@ Again, associated IPs is a loose term, but it generally refers to IP addresses t
 
 ```
 cat domains.txt | haktrails associatedips
+```
+
+### Get historical DNS data
+
+Returns historical DNS data for a domain.
+
+```
+cat domains.txt | haktrails historicaldns
+```
+
+### Get historical whois data
+
+Returns historical whois data for a domain.
+
+```
+cat domains.txt | haktrails historicalwhois
 ```
 
 ### Get company details
@@ -186,8 +203,6 @@ Currently, some of the features of the SecurityTrails API are not yet supported.
 - Domains Statistics
 - SSL Certificates (Stream)
 - SSL Certificates (Pages)
-- DNS History
-- Whois History
 - IP Neighbours
 - IP DSL Search
 - IP Statistics
