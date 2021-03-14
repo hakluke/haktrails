@@ -16,7 +16,7 @@ haktrails is a Golang client for querying SecurityTrails API data.
 
 ```
 
-## SecurityTrails Bug Bounty Hunter Plan Special
+## SecurityTrails $50 Bug Bounty Hunter Plan Sale
 
 Until April 15th, SecurityTrails are running a promotion just for Bug Bounty hunters. [Click here to take a look](
 http://securitytrails.com/bug-bounty-hunters-toolkit?referral_code=LLDAK0F80M)!
