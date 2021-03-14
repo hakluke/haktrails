@@ -22,11 +22,24 @@ haktrails is a Golang client for querying SecurityTrails API data
 - subdomain discovery
 - associated root domain discovery
 - associated IP discovery
+- historical DNS data
+- historical whois data
 - company discovery (discover the owner of a domain)
 - whois (returns json whois data for a given domain)
 - ping (check that your current SecurityTrails configuration/key is working)
 - usage (check your current SecurityTrails usage)
 - "json" or "list" output options for easy tool chaining
+
+## Installation
+
+Install golang, then:
+
+```
+go get github.com/hakluke/haktrails
+~/go/bin/haktrails
+```
+
+I'd recommend adding `~/go/bin/` to your `$PATH` if you haven't already, then you can just run `haktrails`. 
 
 ## Usage
 

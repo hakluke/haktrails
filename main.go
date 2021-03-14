@@ -35,6 +35,8 @@ func main() {
 	concurrencyPtr := mainFlagSet.Int("t", 4, "Number of threads to utilise. Keep in mind that the API has rate limits.")
 	configFile := mainFlagSet.String("c", defaultConfigFile, "Config file location")
 	outputPointer := mainFlagSet.String("o", "list", "output format, list or json. json will return the raw data from SecurityTrails")
+	lookupType := mainFlagSet.String("type", "a", "DNS record type (only used for historical DNS queries): a,aaaa,mx,ns,soa,txt")
+
 	mainFlagSet.Parse(os.Args[2:])
 
 	output = *outputPointer
@@ -72,6 +74,18 @@ func main() {
 	switch os.Args[1] {
 	case "banner":
 		banner()
+	case "historicalwhois":
+		for i := 0; i < numWorkers; i++ {
+			wg.Add(1)
+			go historicalwhois(work, wg)
+		}
+		wg.Wait()
+	case "historicaldns":
+		for i := 0; i < numWorkers; i++ {
+			wg.Add(1)
+			go historicaldns(work, wg, *lookupType)
+		}
+		wg.Wait()
 	case "tags":
 		for i := 0; i < numWorkers; i++ {
 			wg.Add(1)
@@ -132,6 +146,8 @@ func help() {
 	Associated domains:	cat domains.txt | haktrails associateddomains
 	Associated ips: 	cat domains.txt | haktrails associatedips
 	Associated company: 	cat domains.txt | haktrails company
+	Historical DNS data:	cat domains.txt | haktrails historicaldns -type <lookuptype>
+	Historical whois data:	cat domains.txt | haktrails historicalwhois
 	Domain details: 	cat domains.txt | haktrails details
 	Domain tags: 		cat domains.txt | haktrails tags
 	Whois data: 		cat domains.txt | haktrails whois
