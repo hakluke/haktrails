@@ -2,6 +2,20 @@
 
 haktrails is a Golang client for querying SecurityTrails API data
 
+```
+~$ haktrails banner
+
+	 _       _   _           _ _
+	| |_ ___| |_| |_ ___ ___|_| |___
+	|   | .'| '_|  _|  _| .'| | |_ -|
+	|_|_|__,|_,_|_| |_| |__,|_|_|___|
+
+	    Made with <3 by hakluke
+	  Sponsored by SecurityTrails
+	         hakluke.com
+
+```
+
 ## Features
 
 - stdin input for easy tool chaining
