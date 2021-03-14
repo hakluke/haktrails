@@ -1,6 +1,6 @@
 # haktrails
 
-haktrails is a Golang client for querying SecurityTrails API data
+haktrails is a Golang client for querying SecurityTrails API data.
 
 ```
 ~$ haktrails banner
@@ -16,7 +16,23 @@ haktrails is a Golang client for querying SecurityTrails API data
 
 ```
 
-## Features
+## SecurityTrails $50 Bug Bounty Hunter Plan Sale
+
+Until April 15th, SecurityTrails are running a promotion just for Bug Bounty hunters. [Click here to take a look](
+http://securitytrails.com/bug-bounty-hunters-toolkit?referral_code=LLDAK0F80M)!
+
+It will include the following:
+
+- Security data API access
+- 2500 queries/month
+- Associated domains
+- Subdomain enumeration
+- DSL v1 access
+- DNS and WHOIS historical data
+- Code samples for JS, Python, Go, and more
+- Chance to win access to SurfaceBrowser™
+
+## Tool Features
 
 - stdin input for easy tool chaining
 - subdomain discovery
