@@ -135,5 +135,7 @@ func help() {
 	Whois data: 		cat domains.txt | haktrails whois
 	SecurityTrails usage: 	haktrails usage
 	Check API Key: 		haktrails ping
+
+	Full details at: https://github.com/hakluke/haktrails
 	`)
 }
