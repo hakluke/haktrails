@@ -70,6 +70,8 @@ func main() {
 	wg := &sync.WaitGroup{}
 
 	switch os.Args[1] {
+	case "banner":
+		banner()
 	case "tags":
 		for i := 0; i < numWorkers; i++ {
 			wg.Add(1)
@@ -135,7 +137,23 @@ func help() {
 	Whois data: 		cat domains.txt | haktrails whois
 	SecurityTrails usage: 	haktrails usage
 	Check API Key: 		haktrails ping
+	Show the banner:	haktrails banner
 
 	Full details at: https://github.com/hakluke/haktrails
 	`)
+}
+
+func banner() {
+	fmt.Println(`
+	 _       _   _           _ _     
+	| |_ ___| |_| |_ ___ ___|_| |___ 
+	|   | .'| '_|  _|  _| .'| | |_ -|
+	|_|_|__,|_,_|_| |_| |__,|_|_|___|
+									 
+	    Made with <3 by hakluke
+	  Sponsored by SecurityTrails
+	         hakluke.com
+                                                          
+	`)
+
 }
