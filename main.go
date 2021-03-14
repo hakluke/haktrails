@@ -25,6 +25,11 @@ func main() {
 	// default config file location
 	defaultConfigFile := os.Getenv("HOME") + "/.config/haktools/haktrails-config.yml"
 
+	if len(os.Args) <= 1 {
+		help()
+		os.Exit(1)
+	}
+
 	// parse the command line options
 	mainFlagSet := flag.NewFlagSet("haktrails", flag.ExitOnError)
 	concurrencyPtr := mainFlagSet.Int("t", 4, "Number of threads to utilise. Keep in mind that the API has rate limits.")
@@ -113,7 +118,22 @@ func main() {
 		wg.Wait()
 	// no valid subcommand found - default to showing a message and exiting
 	default:
-		fmt.Println("Subcommand missing or incorrect. Hint: haktrails {subdomains|associateddomains}")
+		help()
 		os.Exit(1)
 	}
+}
+
+func help() {
+	fmt.Println(`Usage incorrect. Hint:
+
+	Subdomains:		cat domains.txt | haktrails subdomains
+	Associated domains:	cat domains.txt | haktrails associateddomains
+	Associated ips: 	cat domains.txt | haktrails associatedips
+	Associated company: 	cat domains.txt | haktrails company
+	Domain details: 	cat domains.txt | haktrails details
+	Domain tags: 		cat domains.txt | haktrails tags
+	Whois data: 		cat domains.txt | haktrails whois
+	SecurityTrails usage: 	haktrails usage
+	Check API Key: 		haktrails ping
+	`)
 }
