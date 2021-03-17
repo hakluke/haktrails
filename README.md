@@ -1,20 +1,10 @@
 # haktrails
 
-haktrails is a Golang client for querying SecurityTrails API data.
+haktrails is a Golang client for querying SecurityTrails API data, sponsored by SecurityTrails.
 
-```
-~$ haktrails banner
-
-	 _       _   _           _ _
-	| |_ ___| |_| |_ ___ ___|_| |___
-	|   | .'| '_|  _|  _| .'| | |_ -|
-	|_|_|__,|_,_|_| |_| |__,|_|_|___|
-
-	    Made with <3 by hakluke
-	  Sponsored by SecurityTrails
-	         hakluke.com
-
-```
+<p align="center">
+  <img width="460" height="300" src="./haktrails.png">
+</p>
 
 ## SecurityTrails $50 Bug Bounty Hunter Plan Sale
 
