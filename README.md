@@ -3,7 +3,7 @@
 haktrails is a Golang client for querying SecurityTrails API data, sponsored by SecurityTrails.
 
 <p align="center">
-  <img width="460" height="300" src="./haktrails.png">
+  <img height="300" src="./haktrails.png">
 </p>
 
 ## SecurityTrails $50 Bug Bounty Hunter Plan Sale
