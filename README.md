@@ -35,7 +35,7 @@ It will include the following:
 - ping (check that your current SecurityTrails configuration/key is working)
 - usage (check your current SecurityTrails usage)
 - "json" or "list" output options for easy tool chaining
-
+- "ZSH & Bash autocompletion"
 ## Installation
 
 Install golang, then:
@@ -46,6 +46,17 @@ go get github.com/hakluke/haktrails
 ```
 
 I'd recommend adding `~/go/bin/` to your `$PATH` if you haven't already, then you can just run `haktrails`. 
+
+## Autocompletion (optional)
+ZSH and Bash autocompletion is available 
+Just add this to your ~/.zshrc or ~/.bashrc 
+```
+source ~/go/src/github.com/hakluke/haktrails/haktrails-completion.zsh
+or
+source ~/go/src/github.com/hakluke/haktrails/haktrails-completion.bash
+```
+NOTE: If you are using a custom GOPATH location,
+use it instead of the default one (which is ~/go)
 
 ## Usage
 
