@@ -8,6 +8,7 @@ import (
 	"sync"
 
 	"gopkg.in/yaml.v2"
+  "github.com/fatih/color"
 )
 
 //Config struct holds all configuration data that comes from config.yml or environment variables
@@ -40,7 +41,8 @@ func main() {
 	mainFlagSet.Parse(os.Args[2:])
 
 	output = *outputPointer
-
+  // color start
+  color.Set(color.FgRed)
 	// load config file
 	f, err := os.Open(*configFile)
 	if err != nil {
@@ -48,7 +50,6 @@ func main() {
 		return
 	}
 	defer f.Close()
-
 	// parse the config file
 	decoder := yaml.NewDecoder(f)
 	err = decoder.Decode(&config)
@@ -56,6 +57,8 @@ func main() {
 		fmt.Println("Error decoding config file:", err)
 		return
 	}
+//color stop 
+color.Unset()
 
 	apiEndpoint = "https://api.securitytrails.com/v1/" // global
 
@@ -139,7 +142,12 @@ func main() {
 	}
 }
 
+
 func help() {
+
+  //color start 
+  color.Set(color.FgYellow)
+
 	fmt.Println(`Usage incorrect. Hint:
 
 	Subdomains:		cat domains.txt | haktrails subdomains
@@ -157,9 +165,14 @@ func help() {
 
 	Full details at: https://github.com/hakluke/haktrails
 	`)
+
+  //color stop
+color.Unset()
 }
 
 func banner() {
+  // color start
+  color.Set(color.FgGreen)
 	fmt.Println(`
 	 _       _   _           _ _     
 	| |_ ___| |_| |_ ___ ___|_| |___ 
@@ -171,5 +184,6 @@ func banner() {
 	         hakluke.com
                                                           
 	`)
-
+//color stop
+color.Unset()
 }
