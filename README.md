@@ -215,7 +215,6 @@ Currently, some of the features of the SecurityTrails API are not yet supported.
 - SSL Certificates (Stream)
 - SSL Certificates (Pages)
 - IP Neighbours
-- IP DSL Search
 - IP Statistics
 - IP Whois
 - IP Useragents
