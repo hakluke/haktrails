@@ -13,7 +13,7 @@ http://securitytrails.com/bug-bounty-hunters-toolkit?referral_code=LLDAK0F80M)!
 
 It will include the following:
 
-- Security data API acc:ess
+- Security data API access
 - 2500 queries/month
 - Associated domains
 - Subdomain enumeration
@@ -30,6 +30,7 @@ It will include the following:
 - associated IP discovery
 - historical DNS data
 - historical whois data
+- [DSL queries](https://docs.securitytrails.com/docs/how-to-use-the-dsl) (currently a prototype)
 - company discovery (discover the owner of a domain)
 - whois (returns json whois data for a given domain)
 - ping (check that your current SecurityTrails configuration/key is working)
@@ -77,6 +78,7 @@ yahoo.com
 - The number of threads can be set using `-t <number>`. This will determine how many domains can be processed at the same time. It's worth noting that the API has rate-limiting, so setting a really high thread count here will actually slow you down.
 - The config file location can be set with `-c <file path>`. The default location is `~/.config/haktools/haktrails-config.yml`. A sample config file can be seen below.
 - The lookup type for historical DNS lookups can be set with `-type <type>`, available options are a,aaaa,mx,txt,ns,soa.
+- The DSL query can be set with `-query <query>`. See [here](https://docs.securitytrails.com/docs/how-to-use-the-dsl) for more details.
 
 ### Config file
 
@@ -137,6 +139,14 @@ Returns historical whois data for a domain.
 
 ```
 cat domains.txt | haktrails historicalwhois
+```
+
+### Run a DSL query
+
+Runs a custom SecurityTrails DSL query. See [here](https://docs.securitytrails.com/docs/how-to-use-the-dsl) for more details.
+
+```
+haktrails dsl -query <query>
 ```
 
 ### Get company details

@@ -22,7 +22,7 @@ func associatedDomains(work chan string, wg *sync.WaitGroup) {
 }
 
 func printAllPages(domain string) {
-	response := getResponse("GET", "domain/"+domain+"/associated")
+	response := getResponse("GET", "domain/"+domain+"/associated", "")
 	var results map[string]interface{}
 	json.Unmarshal([]byte(response), &results)
 	metaInterface, ok := results["meta"].(map[string]interface{})
@@ -41,14 +41,14 @@ func printAllPages(domain string) {
 		parseAndPrintDomains(response) // print the first page
 		// print all the other pages
 		for i := 2; i <= int(maxPage); i++ {
-			response = getResponse("GET", "domain/"+domain+"/associated?page="+strconv.Itoa(i))
+			response = getResponse("GET", "domain/"+domain+"/associated?page="+strconv.Itoa(i), "")
 			parseAndPrintDomains(response)
 		}
 	} else {
 		fmt.Println(response) // print the first page
 		// print all the other pages
 		for i := 2; i <= int(maxPage); i++ {
-			response = getResponse("GET", "domain/"+domain+"/associated?page="+strconv.Itoa(i))
+			response = getResponse("GET", "domain/"+domain+"/associated?page="+strconv.Itoa(i), "")
 			fmt.Println(response)
 		}
 	}

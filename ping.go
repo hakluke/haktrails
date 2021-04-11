@@ -5,6 +5,6 @@ import (
 )
 
 func ping() {
-	response := getResponse("GET", "/ping")
+	response := getResponse("GET", "/ping", "")
 	fmt.Println(response)
 }

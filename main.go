@@ -7,8 +7,8 @@ import (
 	"os"
 	"sync"
 
+	"github.com/fatih/color"
 	"gopkg.in/yaml.v2"
-  "github.com/fatih/color"
 )
 
 //Config struct holds all configuration data that comes from config.yml or environment variables
@@ -37,12 +37,13 @@ func main() {
 	configFile := mainFlagSet.String("c", defaultConfigFile, "Config file location")
 	outputPointer := mainFlagSet.String("o", "list", "output format, list or json. json will return the raw data from SecurityTrails")
 	lookupType := mainFlagSet.String("type", "a", "DNS record type (only used for historical DNS queries): a,aaaa,mx,ns,soa,txt")
+	query := mainFlagSet.String("query", "", "Query for DSL (https://docs.securitytrails.com/docs/how-to-use-the-dsl)")
 
 	mainFlagSet.Parse(os.Args[2:])
 
 	output = *outputPointer
-  // color start
-  color.Set(color.FgRed)
+	// color start
+	color.Set(color.FgRed)
 	// load config file
 	f, err := os.Open(*configFile)
 	if err != nil {
@@ -57,8 +58,8 @@ func main() {
 		fmt.Println("Error decoding config file:", err)
 		return
 	}
-//color stop 
-color.Unset()
+	//color stop
+	color.Unset()
 
 	apiEndpoint = "https://api.securitytrails.com/v1/" // global
 
@@ -77,6 +78,8 @@ color.Unset()
 	switch os.Args[1] {
 	case "banner":
 		banner()
+	case "dsl":
+		dsl(*query)
 	case "historicalwhois":
 		for i := 0; i < numWorkers; i++ {
 			wg.Add(1)
@@ -142,11 +145,10 @@ color.Unset()
 	}
 }
 
-
 func help() {
 
-  //color start 
-  color.Set(color.FgYellow)
+	//color start
+	color.Set(color.FgYellow)
 
 	fmt.Println(`Usage incorrect. Hint:
 
@@ -159,6 +161,7 @@ func help() {
 	Domain details: 	cat domains.txt | haktrails details
 	Domain tags: 		cat domains.txt | haktrails tags
 	Whois data: 		cat domains.txt | haktrails whois
+        DSL query:              haktrails dsl -query "query here"
 	SecurityTrails usage: 	haktrails usage
 	Check API Key: 		haktrails ping
 	Show the banner:	haktrails banner
@@ -166,13 +169,13 @@ func help() {
 	Full details at: https://github.com/hakluke/haktrails
 	`)
 
-  //color stop
-color.Unset()
+	//color stop
+	color.Unset()
 }
 
 func banner() {
-  // color start
-  color.Set(color.FgGreen)
+	// color start
+	color.Set(color.FgGreen)
 	fmt.Println(`
 	 _       _   _           _ _     
 	| |_ ___| |_| |_ ___ ___|_| |___ 
@@ -184,6 +187,6 @@ func banner() {
 	         hakluke.com
                                                           
 	`)
-//color stop
-color.Unset()
+	//color stop
+	color.Unset()
 }
