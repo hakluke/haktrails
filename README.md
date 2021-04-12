@@ -197,7 +197,7 @@ Pings SecurityTrails to check if your API key is working properly.
 haktrails ping
 ```
 
-###
+### Banner
 
 Shows a nice ascii-art banner :)
 
