@@ -24,6 +24,8 @@ haktrails is a Golang client for querying SecurityTrails API data, sponsored by 
 
 ## Installation
 
+You will need a SecurityTrails API key to use this tool. If you're using it for bug bounties, I'd recommend checking out the [Bug Bounty Hunter's Toolkit](http://securitytrails.com/bug-bounty-hunters-toolkit?referral_code=LLDAK0F80M) package which is $99 per month and gives you access to the API features that you're most likely to use as a bug bounty hunter.
+
 Install golang, then:
 
 ```
