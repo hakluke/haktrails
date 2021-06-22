@@ -5,12 +5,13 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"strings"
 )
 
 // get a response from an endpoint as a string
-func getResponse(method string, url string) string {
+func getResponse(method string, url string, postBody string) string {
 	for {
-		response := tryRequest(method, url)
+		response := tryRequest(method, url, postBody)
 		errorEncountered, message := checkJSONError(response)
 		if errorEncountered {
 			log.Println("JSON error in response:", message)
@@ -20,10 +21,10 @@ func getResponse(method string, url string) string {
 	}
 }
 
-func tryRequest(method string, url string) string {
+func tryRequest(method string, url string, postBody string) string {
 	client := &http.Client{}
 	url = apiEndpoint + url
-	req, _ := http.NewRequest(method, url, nil)
+	req, _ := http.NewRequest(method, url, strings.NewReader(postBody))
 	req.Header.Set("apikey", config.SecurityTrails.Key)
 	resp, err := client.Do(req)
 

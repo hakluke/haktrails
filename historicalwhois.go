@@ -15,7 +15,7 @@ func historicalwhois(work chan string, wg *sync.WaitGroup) {
 }
 
 func printAllPagesHistoricalWhois(domain string) {
-	response := getResponse("GET", "history/"+domain+"/whois")
+	response := getResponse("GET", "history/"+domain+"/whois", "")
 	var results map[string]interface{}
 	json.Unmarshal([]byte(response), &results)
 	maxPage, ok := results["pages"].(float64) // total number of pages
@@ -27,7 +27,7 @@ func printAllPagesHistoricalWhois(domain string) {
 	fmt.Println(response) // print the first page
 	// now print all the other pages
 	for i := 2; i <= int(maxPage); i++ {
-		response = getResponse("GET", "history/"+domain+"/whois/?page="+strconv.Itoa(i))
+		response = getResponse("GET", "history/"+domain+"/whois/?page="+strconv.Itoa(i), "")
 		fmt.Println(response)
 	}
 }

@@ -8,7 +8,7 @@ import (
 func tags(work chan string, wg *sync.WaitGroup) {
 	defer wg.Done()
 	for text := range work {
-		response := getResponse("GET", "domain/"+text+"/tags")
+		response := getResponse("GET", "domain/"+text+"/tags", "")
 		fmt.Println(response)
 	}
 }

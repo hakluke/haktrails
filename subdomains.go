@@ -16,7 +16,7 @@ func subdomains(work chan string, wg *sync.WaitGroup) {
 
 // get the subdomains + print them
 func retrieveAndPrintSubdomains(domain string) {
-	response := getResponse("GET", "domain/"+domain+"/subdomains")
+	response := getResponse("GET", "domain/"+domain+"/subdomains", "")
 	if output == "json" {
 		fmt.Println(response)
 	} else {

@@ -6,22 +6,6 @@ haktrails is a Golang client for querying SecurityTrails API data, sponsored by 
   <img height="300" src="./haktrails.png">
 </p>
 
-## SecurityTrails $50 Bug Bounty Hunter Plan Sale
-
-Until April 15th, SecurityTrails are running a promotion just for Bug Bounty hunters. [Click here to take a look](
-http://securitytrails.com/bug-bounty-hunters-toolkit?referral_code=LLDAK0F80M)!
-
-It will include the following:
-
-- Security data API acc:ess
-- 2500 queries/month
-- Associated domains
-- Subdomain enumeration
-- DSL v1 access
-- DNS and WHOIS historical data
-- Code samples for JS, Python, Go, and more
-- Chance to win access to SurfaceBrowser™
-
 ## Tool Features
 
 - stdin input for easy tool chaining
@@ -30,15 +14,25 @@ It will include the following:
 - associated IP discovery
 - historical DNS data
 - historical whois data
+- [DSL queries](https://docs.securitytrails.com/docs/how-to-use-the-dsl) (currently a prototype)
 - company discovery (discover the owner of a domain)
 - whois (returns json whois data for a given domain)
 - ping (check that your current SecurityTrails configuration/key is working)
 - usage (check your current SecurityTrails usage)
 - "json" or "list" output options for easy tool chaining
 - "ZSH & Bash autocompletion"
+
 ## Installation
 
-Install golang, then:
+You will need a SecurityTrails API key to use this tool. If you're using it for bug bounties, I'd recommend checking out the bug [bounty hunter's toolkit](http://securitytrails.com/bug-bounty-hunters-toolkit?referral_code=LLDAK0F80M) if you're a bug bounty hunter. It provides access to the majority of data that you will need for a good price. See the details below.
+
+<a href="http://securitytrails.com/bug-bounty-hunters-toolkit?referral_code=LLDAK0F80M">
+<p align="center">
+  <img src="./securitytrails-banner.jpg">
+</p>
+</a>
+
+Once you have an API key, install golang, then:
 
 ```
 go get github.com/hakluke/haktrails
@@ -77,6 +71,7 @@ yahoo.com
 - The number of threads can be set using `-t <number>`. This will determine how many domains can be processed at the same time. It's worth noting that the API has rate-limiting, so setting a really high thread count here will actually slow you down.
 - The config file location can be set with `-c <file path>`. The default location is `~/.config/haktools/haktrails-config.yml`. A sample config file can be seen below.
 - The lookup type for historical DNS lookups can be set with `-type <type>`, available options are a,aaaa,mx,txt,ns,soa.
+- The DSL query can be set with `-query <query>`. See [here](https://docs.securitytrails.com/docs/how-to-use-the-dsl) for more details.
 
 ### Config file
 
@@ -139,6 +134,14 @@ Returns historical whois data for a domain.
 cat domains.txt | haktrails historicalwhois
 ```
 
+### Run a DSL query
+
+Runs a custom SecurityTrails DSL query. See [here](https://docs.securitytrails.com/docs/how-to-use-the-dsl) for more details.
+
+```
+haktrails dsl -query <query>
+```
+
 ### Get company details
 
 Returns the company that is associated with the provided domain(s).
@@ -187,7 +190,7 @@ Pings SecurityTrails to check if your API key is working properly.
 haktrails ping
 ```
 
-###
+### Banner
 
 Shows a nice ascii-art banner :)
 
@@ -205,7 +208,6 @@ Currently, some of the features of the SecurityTrails API are not yet supported.
 - SSL Certificates (Stream)
 - SSL Certificates (Pages)
 - IP Neighbours
-- IP DSL Search
 - IP Statistics
 - IP Whois
 - IP Useragents

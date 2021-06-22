@@ -9,7 +9,7 @@ import (
 func associatedIPs(work chan string, wg *sync.WaitGroup) {
 	defer wg.Done()
 	for text := range work {
-		response := getResponse("GET", "company/"+text+"/associated-ips")
+		response := getResponse("GET", "company/"+text+"/associated-ips", "")
 		if output == "list" {
 			parseAndPrintIPs(response)
 		} else {
