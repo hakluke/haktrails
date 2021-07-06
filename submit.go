@@ -5,7 +5,7 @@ import (
 	"sync"
 )
 
-// the main subdomains function
+// the main subdomains function will wait until it has received $buffer number of subdomains from stdin, then submit them
 func submit(work chan string, wg *sync.WaitGroup, buffer int) {
 	defer wg.Done()
 	var subs []string
@@ -13,6 +13,7 @@ func submit(work chan string, wg *sync.WaitGroup, buffer int) {
 		subs = append(subs, text)
 		if len(subs) >= buffer {
 			submitSubdomains(subs)
+			subs = nil
 		}
 	}
 }
