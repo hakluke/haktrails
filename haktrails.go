@@ -33,7 +33,8 @@ func main() {
 
 	// parse the command line options
 	mainFlagSet := flag.NewFlagSet("haktrails", flag.ExitOnError)
-	concurrencyPtr := mainFlagSet.Int("t", 4, "Number of threads to utilise. Keep in mind that the API has rate limits.")
+	concurrencyPtr := mainFlagSet.Int("t", 2, "Number of threads to utilise. Keep in mind that the API has rate limits.")
+	buffer := mainFlagSet.Int("b", 100, "Number of subdomains to send per request for the submission endpoint")
 	configFile := mainFlagSet.String("c", defaultConfigFile, "Config file location")
 	outputPointer := mainFlagSet.String("o", "list", "output format, list or json. json will return the raw data from SecurityTrails")
 	lookupType := mainFlagSet.String("type", "a", "DNS record type (only used for historical DNS queries): a,aaaa,mx,ns,soa,txt")
@@ -78,6 +79,12 @@ func main() {
 	switch os.Args[1] {
 	case "banner":
 		banner()
+	case "submit":
+		for i := 0; i < numWorkers; i++ {
+			wg.Add(1)
+			go submit(work, wg, *buffer)
+		}
+		wg.Wait()
 	case "dsl":
 		dsl(*query)
 	case "historicalwhois":

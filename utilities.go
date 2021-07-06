@@ -24,17 +24,23 @@ func getResponse(method string, url string, postBody string) string {
 func tryRequest(method string, url string, postBody string) string {
 	client := &http.Client{}
 	url = apiEndpoint + url
-	req, _ := http.NewRequest(method, url, strings.NewReader(postBody))
+	req, err := http.NewRequest(method, url, strings.NewReader(postBody))
+	if err != nil {
+		log.Println("Error creating request:", err)
+		return ""
+	}
 	req.Header.Set("apikey", config.SecurityTrails.Key)
 	resp, err := client.Do(req)
 
 	if err != nil {
 		log.Println("Error retrieving:", url, err)
+		return ""
 	}
 
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		log.Println("Error reading request body.", err)
+		return ""
 	}
 
 	return string(body)
