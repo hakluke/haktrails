@@ -16,6 +16,7 @@ func submit(work chan string, wg *sync.WaitGroup, buffer int) {
 			subs = nil
 		}
 	}
+	submitSubdomains(subs)
 }
 
 // get the subdomains + print them
