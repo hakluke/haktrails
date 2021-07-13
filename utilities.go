@@ -14,7 +14,7 @@ func getResponse(method string, url string, postBody string) string {
 		response := tryRequest(method, url, postBody)
 		errorEncountered, message := checkJSONError(response)
 		if errorEncountered {
-			log.Println("JSON error in response:", message)
+			return "JSON error: " + message
 		} else {
 			return string(response)
 		}
