@@ -33,5 +33,5 @@ func submitSubdomains(subs []string) {
 	}
 
 	// send it
-	fmt.Println("Response:", getResponse("POST", "submit/hostnames", postBody))
+	fmt.Println(getResponse("POST", "submit/hostnames", postBody))
 }

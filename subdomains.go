@@ -26,6 +26,10 @@ func retrieveAndPrintSubdomains(domain string) {
 
 // list the subdomains
 func parseAndPrintSubdomains(body string, domain string) {
+	// don't try to parse the body if it is empty
+	if body == "" {
+		return
+	}
 	var results map[string]interface{}
 	json.Unmarshal([]byte(body), &results)
 	subdomainInterfaces := results["subdomains"].([]interface{})
