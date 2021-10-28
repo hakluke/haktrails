@@ -35,6 +35,13 @@ You will need a SecurityTrails API key to use this tool. If you're using it for 
 Once you have an API key, install golang, then:
 
 ```
+#Go version > 1.17
+go install -v github.com/hakluke/haktrails@latest
+~/go/bin/haktrails
+
+# Go version < 1.17
+# https://golang.org/doc/go-get-install-deprecation
+
 go get github.com/hakluke/haktrails
 ~/go/bin/haktrails
 ```
