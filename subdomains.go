@@ -32,6 +32,11 @@ func parseAndPrintSubdomains(body string, domain string) {
 	}
 	var results map[string]interface{}
 	json.Unmarshal([]byte(body), &results)
+	val, ok := results["subdomains"]
+	// Check if there are subdomains in the request to avoid the interface conversion panic
+	if !ok || val == nil {
+		return
+	}
 	subdomainInterfaces := results["subdomains"].([]interface{})
 	for _, subdomain := range subdomainInterfaces {
 		fmt.Println(subdomain.(string) + "." + domain)
