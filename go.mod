@@ -1,4 +1,4 @@
-module github.com/jordanpotti/haktrails
+module github.com/hakluke/haktrails
 
 go 1.16
 
