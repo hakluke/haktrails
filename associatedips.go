@@ -21,6 +21,11 @@ func associatedIPs(work chan string, wg *sync.WaitGroup) {
 func parseAndPrintIPs(body string) {
 	var results map[string]interface{}
 	json.Unmarshal([]byte(body), &results)
+	val, ok := results["records"]
+	// Check if there are records in the request to avoid the interface conversion panic
+	if !ok || val == nil {
+		return
+	}
 	recordInterfaces := results["records"].([]interface{})
 	for _, record := range recordInterfaces {
 		recordMap := record.(map[string]interface{})
