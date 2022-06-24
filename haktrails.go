@@ -24,7 +24,12 @@ var output string
 
 func main() {
 	// default config file location
-	defaultConfigFile := os.Getenv("HOME") + "/.config/haktools/haktrails-config.yml"
+	home, err := os.UserHomeDir()
+	if err != nil {
+		fmt.Println("Error finding home dir:", err)
+		return
+	}
+	defaultConfigFile := home + "/.config/haktools/haktrails-config.yml"
 
 	if len(os.Args) <= 1 {
 		help()
