@@ -39,6 +39,6 @@ func parseAndPrintSubdomains(body string, domain string) {
 	}
 	subdomainInterfaces := results["subdomains"].([]interface{})
 	for _, subdomain := range subdomainInterfaces {
-		fmt.Println(subdomain.(string))
+		fmt.Println(subdomain.(string) + "." + domain)
 	}
 }
