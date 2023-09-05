@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"net/http"
 	"sync"
 )
 
@@ -16,7 +17,7 @@ func subdomains(work chan string, wg *sync.WaitGroup) {
 
 // get the subdomains + print them
 func retrieveAndPrintSubdomains(domain string) {
-	response := getResponse("GET", "domain/"+domain+"/subdomains", "")
+	response := getResponse(http.MethodGet, "domain/"+domain+"/subdomains", "")
 	if output == "json" {
 		fmt.Println(response)
 	} else {

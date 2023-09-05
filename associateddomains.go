@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"net/http"
 	"strconv"
 	"sync"
 )
@@ -22,7 +23,7 @@ func associatedDomains(work chan string, wg *sync.WaitGroup) {
 }
 
 func printAllPages(domain string) {
-	response := getResponse("GET", "domain/"+domain+"/associated", "")
+	response := getResponse(http.MethodGet, "domain/"+domain+"/associated", "")
 	var results map[string]interface{}
 	json.Unmarshal([]byte(response), &results)
 	metaInterface, ok := results["meta"].(map[string]interface{})

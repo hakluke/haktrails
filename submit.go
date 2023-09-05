@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"net/http"
 	"sync"
 )
 
@@ -33,5 +34,5 @@ func submitSubdomains(subs []string) {
 	}
 
 	// send it
-	fmt.Println(getResponse("POST", "submit/hostnames", postBody))
+	fmt.Println(getResponse(http.MethodPost, "submit/hostnames", postBody))
 }
